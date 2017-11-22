@@ -1,5 +1,5 @@
 
-var li = '<li class="list-group-item"><span class="badge badge-primary badge-pill">##id##</span><input type="text" id="artista##id##" onFocusOut="modificarArtista(##id##, this)" value="##nombre##"> <i onClick="eliminarArtista(##id##)" class="fa fa-trash" aria-hidden="true"></i></li>';
+var li = '<li class="list-group-item"><span class="badge badge-primary badge-pill">##id##</span><input type="text" id="##id##" onFocusOut="modificarArtista(this.id, this.value)" value="##nombre##"> <i onClick="eliminarArtista(##id##)" class="fa fa-trash" aria-hidden="true"></i></li>';
 var endpoint = 'http://localhost:8080/formacion/api/';
 
 $(function() {	
@@ -69,11 +69,11 @@ function eliminarArtista( id ){
 	
 }
 
- 
-function modificarArtista(id, nombre){
+
+function modificarArtista(id, value){
 	
-	console.log('modificarArtista id=%s nombre=%s', id, nombre);
-	var dataForm = { "id": id, "nombre": nombre };		
+	console.log('modificarArtista id=%s value=%s ', id, value);
+	var dataForm = { "id": id, "nombre": value };		
 	
 	$.ajax({
 		  type: "PUT",
