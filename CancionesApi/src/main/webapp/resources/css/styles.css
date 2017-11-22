@@ -1,0 +1,17 @@
+body{}
+
+.error{
+	color :red;
+	font-style: italic;
+}
+
+.fa-trash{
+	float: right;
+}
+.fa-trash:hover{
+	cursor: pointer;
+}
+
+.fa-trash:before {
+	color: red;
+}
