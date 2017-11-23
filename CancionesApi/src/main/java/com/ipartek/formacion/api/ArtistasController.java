@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ipartek.formacion.Artista;
+import com.ipartek.formacion.domain.Artista;
+import com.ipartek.formacion.repository.DAOArtista;
+import com.ipartek.formacion.service.ArtistaService;
 
 @Controller
 @RequestMapping(value = "/api/artistas/")
 public class ArtistasController {
+
+	@Autowired
+	ArtistaService artistaService;
+
+	@Autowired
+	DAOArtista artistaDAO;
 
 	ArrayList<Artista> artistas_memoria;
 	int indice;
@@ -30,10 +39,12 @@ public class ArtistasController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public @ResponseBody List<Artista> listar(HttpServletResponse response) {
 
-		if (artistas_memoria.isEmpty()) {
+		ArrayList<Artista> artistas = (ArrayList<Artista>) artistaService.listar();
+
+		if (artistas.isEmpty()) {
 			response.setStatus(HttpStatus.NO_CONTENT.value());
 		}
-		return artistas_memoria;
+		return artistas;
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
