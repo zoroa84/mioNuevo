@@ -1,7 +1,7 @@
 body{}
 
 .error{
-	color :red;
+	color: red;
 	font-style: italic;
 }
 
@@ -10,8 +10,12 @@ body{}
 }
 .fa-trash:hover{
 	cursor: pointer;
+}	
+
+.fa-trash:before{
+	color: red;
 }
 
-.fa-trash:before {
-	color: red;
+#lista input{
+	border: none;
 }
